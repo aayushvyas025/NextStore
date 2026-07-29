@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon node server.js"
+    "server": "nodemon node server.js",
+    "prod": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +20,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
+  },
+  "imports": {
+    "#constants/*":"./src/constants/*.js"
   }
 }
