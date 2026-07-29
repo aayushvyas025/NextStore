@@ -1,1 +1,1 @@
-# NextStore - Ecommerce Store Application 
+# NextStore - E-commerce Store Application 
