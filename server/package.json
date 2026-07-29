@@ -26,6 +26,7 @@
     "#configs/*":"./src/configs/*.js",
     "#utils/*":"./src/utils/*.js",
     "#middleware/*":"./src/middleware/*.js",
-    "#models/*":"./src/models/*.js"
+    "#models/*":"./src/models/*.js",
+    "#routes/*":"./src/routes/*.js"
   }
 }
