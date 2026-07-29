@@ -25,6 +25,7 @@
     "#constants/*":"./src/constants/*.js",
     "#configs/*":"./src/configs/*.js",
     "#utils/*":"./src/utils/*.js",
-    "#middleware/*":"./src/middleware/*.js"
+    "#middleware/*":"./src/middleware/*.js",
+    "#models/*":"./src/models/*.js"
   }
 }
