@@ -14,8 +14,7 @@ async function databaseConnection(app) {
     });
   } catch (error) {
     console.log(`Error, while connecting with database ${error.message}`);
-  } finally {
   }
-} 
+}
 
-export default databaseConnection; 
+export default databaseConnection;
