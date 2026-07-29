@@ -1,12 +1,7 @@
+import databaseConnection from "#utils/db_connection/dbConnection.util";
 import express from "express";
-import envVariables from "#constants/env.constant";
 
-const { backendPort } = envVariables;
 
 const app = express();
 
-app.listen(backendPort, () => {
-  console.log(
-    `Server is up and running successfully on http://localhost:${backendPort}`,
-  );
-});
+databaseConnection(app); 
