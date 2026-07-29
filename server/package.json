@@ -27,6 +27,7 @@
     "#utils/*":"./src/utils/*.js",
     "#middleware/*":"./src/middleware/*.js",
     "#models/*":"./src/models/*.js",
-    "#routes/*":"./src/routes/*.js"
+    "#routes/*":"./src/routes/*.js",
+    "#validation":"./src/validation/*.js"
   }
 }
