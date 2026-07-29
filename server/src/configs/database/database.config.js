@@ -2,7 +2,6 @@ import envVariables from "#constants/env.constant";
 import mongoose from "mongoose";
 
 const { mongodbUri } = envVariables;
-console.log(mongodbUri)
 
 const databaseConfig = async () => {
   try {
