@@ -24,6 +24,7 @@
   "imports": {
     "#constants/*":"./src/constants/*.js",
     "#configs/*":"./src/configs/*.js",
-    "#utils/*":"./src/utils/*.js"
+    "#utils/*":"./src/utils/*.js",
+    "#middleware/*":"./src/middleware/*.js"
   }
 }
