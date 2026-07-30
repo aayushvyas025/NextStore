@@ -4,8 +4,17 @@ import {
   validateProductId,
 } from "#validation/product.validation";
 
-export const fetchProduct = async (request, response, next) => {
+export const fetchProduct = async (_, response, next) => {
   try {
+    const products = await Product.find().sort({ createdAt: -1 });
+    return response.status(200).json({
+      success: true,
+      message:
+        products.length > 0
+          ? `Products fetched successfully`
+          : `No products found`,
+      products,
+    });
   } catch (error) {
     console.error(`Error, while fetching product ${error.message}`);
     next(error);
@@ -13,7 +22,30 @@ export const fetchProduct = async (request, response, next) => {
 };
 
 export const fetchProductById = async (request, response, next) => {
+  const { id } = request.params;
+  const { isValid, invalidId } = validateProductId(id);
+
+  if (!isValid) {
+    return response
+      .status(400)
+      .json({ success: false, message: `Error, ${invalidId}` });
+  }
   try {
+    const product = await Product.findById(id);
+
+    if (!product) {
+      return response
+        .status(404)
+        .json({ success: false, message: `Error, product doesn't exist` });
+    }
+
+    return response
+      .status(200)
+      .json({
+        success: true,
+        message: `Product by id fetched successfully`,
+        product,
+      });
   } catch (error) {
     console.log(`Error, while fetching product by id: ${error.message}`);
     next(error);
@@ -53,6 +85,14 @@ export const createProduct = async (request, response, next) => {
     });
   } catch (error) {
     console.error(`Error, while creating product: ${error.message}`);
+    next(error);
+  }
+};
+
+export const updateProduct = async (request, response, next) => {
+  try {
+  } catch (error) {
+    console.error(`Error, while updating product: ${error.message}`);
     next(error);
   }
 };

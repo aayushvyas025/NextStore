@@ -4,6 +4,7 @@ import {
   deleteProduct,
   fetchProduct,
   fetchProductById,
+  updateProduct,
 } from "#controller/product/controller.product";
 import express from "express";
 
@@ -14,7 +15,7 @@ const router = express.Router();
 router.get(GET, fetchProduct);
 router.get(GET_ID, fetchProductById);
 router.post(POST, createProduct);
-router.put(PUT, deleteProduct);
+router.put(PUT, updateProduct);
 router.delete(DELETE, deleteProduct);
 
 export default router;

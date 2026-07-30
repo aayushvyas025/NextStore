@@ -26,5 +26,5 @@ export function validateProductId(id) {
     return { isValid: false, invalidId: "invalid product id" };
   }
 
-  return { isValid: true, message: null };
+  return { isValid: true, invalidId: null };
 }
