@@ -3,9 +3,9 @@ const apiRoutes = Object.freeze({
   products: {
     POST: "/product/create",
     GET: "/products/fetch",
-    GET_ID: "/products/fetch/:id",
-    PUT: "/products/update/:id",
-    DELETE: "/products/delete/:id",
+    GET_ID: "/product/fetch/:id",
+    PUT: "/product/update/:id",
+    DELETE: "/product/delete/:id",
   },
 });
 
