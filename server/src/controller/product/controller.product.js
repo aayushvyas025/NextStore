@@ -39,13 +39,11 @@ export const fetchProductById = async (request, response, next) => {
         .json({ success: false, message: `Error, product doesn't exist` });
     }
 
-    return response
-      .status(200)
-      .json({
-        success: true,
-        message: `Product by id fetched successfully`,
-        product,
-      });
+    return response.status(200).json({
+      success: true,
+      message: `Product by id fetched successfully`,
+      product,
+    });
   } catch (error) {
     console.log(`Error, while fetching product by id: ${error.message}`);
     next(error);
@@ -90,7 +88,46 @@ export const createProduct = async (request, response, next) => {
 };
 
 export const updateProduct = async (request, response, next) => {
+  const { id } = request.params;
+  const { title, price, image } = request.body;
+  const validateId = validateProductId(id);
+  const validateParams = validateProduct({ title, price, image });
+
+  if (!validateId.isValid) {
+    return response
+      .status(400)
+      .json({ success: false, message: `Error, ${validateId.invalidId}` });
+  }
+
+  if (!validateParams.isValid) {
+    return response.status(400).json({
+      success: false,
+      message: `Error, ${validateParams.field} required`,
+    });
+  }
+
   try {
+    const updatedProduct = await Product.findByIdAndUpdate(
+      id,
+      {
+        title,
+        price,
+        image,
+      },
+      { new: true, runValidators: true },
+    );
+
+    if (!updateProduct) {
+      return response
+        .status(404)
+        .json({ success: false, message: `Error, product doesn't exist` });
+    }
+
+    return response.status(200).json({
+      success: true,
+      message: `Product updated successfully`,
+      updatedProduct,
+    });
   } catch (error) {
     console.error(`Error, while updating product: ${error.message}`);
     next(error);
