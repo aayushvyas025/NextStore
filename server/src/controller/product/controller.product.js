@@ -1,5 +1,8 @@
 import Product from "#models/product/product.model";
-import { validateProduct, validateProductId } from "#validation/product.validation";
+import {
+  validateProduct,
+  validateProductId,
+} from "#validation/product.validation";
 
 export const fetchProduct = async (request, response, next) => {
   try {
@@ -12,7 +15,7 @@ export const fetchProduct = async (request, response, next) => {
 export const fetchProductById = async (request, response, next) => {
   try {
   } catch (error) {
-    console.log(`Error, while fetching product by id ${error.message}`);
+    console.log(`Error, while fetching product by id: ${error.message}`);
     next(error);
   }
 };
@@ -49,18 +52,35 @@ export const createProduct = async (request, response, next) => {
       newProduct: product,
     });
   } catch (error) {
-    console.error(`Error, while creating product ${error.message}`);
+    console.error(`Error, while creating product: ${error.message}`);
     next(error);
   }
 };
 
 export const deleteProduct = async (request, response, next) => {
-    const {id} = request.params; 
-    const {isValid, message} = validateProductId(id); 
-   
+  const { id } = request.params;
+  const { isValid, invalidId } = validateProductId(id);
+
+  if (!isValid) {
+    return response.status(400).json({
+      success: false,
+      message: `Error, ${invalId}`,
+    });
+  }
+
   try {
+    const product = await Product.findByIdAndDelete(id);
+    if (!product) {
+      return response
+        .status(404)
+        .json({ success: false, message: `Error, product doesn't exist` });
+    }
+
+    return response
+      .status(200)
+      .json({ success: true, message: `Product deleted successfully` });
   } catch (error) {
-    console.error(`Error, while creating product ${error.message}`);
+    console.error(`Error, while deleting product: ${error.message}`);
     next(error);
   }
 };

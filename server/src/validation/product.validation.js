@@ -23,7 +23,7 @@ export function validateProductId(id) {
   const isValidId = mongoose.Types.ObjectId.isValid(id);
 
   if (!isValidId) {
-    return { isValid: false, message: "invalid product id" };
+    return { isValid: false, invalidId: "invalid product id" };
   }
 
   return { isValid: true, message: null };
