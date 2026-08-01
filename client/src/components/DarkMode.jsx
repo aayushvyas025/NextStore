@@ -2,9 +2,9 @@ import { Button } from '@chakra-ui/react'
 import { Moon, Sun } from 'lucide-react'
 import React from 'react'
 
-function DarkMode({mode = "light"}) {
+function DarkMode({mode, onClickHandler}) {
   return (
-    <Button>
+    <Button onClick={onClickHandler}>
       { mode === "light" ? <Moon /> :  <Sun /> }
     </Button>
   )

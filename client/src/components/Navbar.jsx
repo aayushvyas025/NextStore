@@ -1,17 +1,16 @@
 import {
-  Button,
-  Center,
   Container,
   Flex,
   HStack,
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import { Link } from "react-router-dom";
-import { Plus } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import DarkMode from "./DarkMode";
+import NavLink from "./NavLink";
 
 function Navbar() {
+  const { pathname } = useLocation();
   return (
     <Container maxW={"1140px"} px={4}>
       <Flex
@@ -27,17 +26,12 @@ function Navbar() {
           textTransform={"uppercase"}
           textAlign={"center"}
           fontWeight={"bold"}
-          display={"flex"}
         >
           <Link to={"/"}>Next Store</Link>
         </Text>
         <HStack spacing={2} alignItems={"center"}>
-          <Link to={"/create"}>
-            <Button>
-              <Plus />
-            </Button>
-          </Link> 
-         <DarkMode />
+          <NavLink link={pathname === "/" ? "/create" : "/"} route={pathname} />
+          <DarkMode />
         </HStack>
       </Flex>
     </Container>
