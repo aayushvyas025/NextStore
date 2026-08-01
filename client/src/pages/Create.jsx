@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 
 function Create() {
   return (
-    <div>Create</div>
+    <Suspense>
+      
+    </Suspense>
   )
 }
 
