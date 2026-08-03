@@ -8,7 +8,7 @@ function setupCommonMiddleware(app) {
   // app-level body json parser
   app.use(express.json());
   // cors connection
-  if (nodeEnvironment !== "production") {
+  if (nodeEnvironment !== "development") {
     app.use(
       cors({
         origin: clientBaseURL,

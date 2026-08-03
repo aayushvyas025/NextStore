@@ -117,7 +117,7 @@ export const updateProduct = async (request, response, next) => {
       { new: true, runValidators: true },
     );
 
-    if (!updateProduct) {
+    if (!updatedProduct) {
       return response
         .status(404)
         .json({ success: false, message: `Error, product doesn't exist` });

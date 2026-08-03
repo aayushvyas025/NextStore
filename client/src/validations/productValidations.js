@@ -7,7 +7,7 @@ export const productValidation = ({ title, price, image }) => {
         return {isValid:false,field:'price' }; 
     }
 
-    if(typeof image !== "string" || image.trim()) {
+    if(typeof image !== "string" || !image.trim()) {
         return {isValid:false, field:'image'}; 
     }
 

@@ -8,6 +8,7 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
+import useProductStore from "../store/productStore";
 
 function Create() {
   const [newProduct, setNewProduct] = useState({
@@ -16,7 +17,19 @@ function Create() {
     image: "",
   });
 
-  function handleSubmit() {
+  const { isLoading, error, createProduct } = useProductStore();
+
+  async function handleSubmit() {
+    const { success, message } = await createProduct({
+      title: newProduct.title,
+      price: Number(newProduct.price),
+      image: newProduct.image,
+    });
+    if (!success) {
+      return;
+    }
+    console.log("New product created successfully");
+    setNewProduct({ title: "", price: 0, image: "" });
   }
   return (
     <Suspense>
@@ -60,7 +73,13 @@ function Create() {
                   setNewProduct({ ...newProduct, image: event.target.value })
                 }
               />
-              <Button colorScheme="green" w={"full"} onClick={handleSubmit}>
+              <Button
+                type="submit"
+                colorScheme="green"
+                w={"full"}
+                onClick={handleSubmit}
+                disabled={isLoading}
+              >
                 Add Product
               </Button>
             </VStack>
