@@ -6,9 +6,11 @@ import {
   Heading,
   Input,
   useColorModeValue,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import useProductStore from "../store/productStore";
+import useCustomToast from "../hooks/useCustomToast";
 
 function Create() {
   const [newProduct, setNewProduct] = useState({
@@ -16,7 +18,7 @@ function Create() {
     price: 0,
     image: "",
   });
-
+  const { successToast, errorToast } = useCustomToast();
   const { isLoading, error, createProduct } = useProductStore();
 
   async function handleSubmit() {
@@ -26,9 +28,10 @@ function Create() {
       image: newProduct.image,
     });
     if (!success) {
+      errorToast(message);
       return;
     }
-    console.log("New product created successfully");
+    successToast(message);
     setNewProduct({ title: "", price: 0, image: "" });
   }
   return (

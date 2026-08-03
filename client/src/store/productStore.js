@@ -11,7 +11,6 @@ const useProductStore = create((set) => ({
     const { isValid, field } = productValidation({ title, price, image });
     if (!isValid) {
       const message = `Error, ${field} is required`;
-      console.log(message)
       set({ error: message });
       return { success: false, message };
     }
