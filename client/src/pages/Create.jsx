@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import useProductStore from "../store/productStore";
 import useCustomToast from "../hooks/useCustomToast";
+import CreateProductSkeleton from "../components/skeleton/CreateProductSkeleton";
 
 function Create() {
   const [newProduct, setNewProduct] = useState({
@@ -35,10 +36,16 @@ function Create() {
     setNewProduct({ title: "", price: 0, image: "" });
   }
   return (
-    <Suspense>
+    <Suspense fallback={<CreateProductSkeleton />}>
       <Container maxW={"container.sm"}>
         <VStack spacing={8}>
-          <Heading as={"h1"} size={"xl"} textAlign={"center"} mb={8}>
+          <Heading
+            as={"h1"}
+            size={"xl"}
+            textAlign={"center"}
+            mb={8}
+            color={useColorModeValue("gray.700", "white")}
+          >
             Create New Product
           </Heading>
           <Box
@@ -83,7 +90,7 @@ function Create() {
                 onClick={handleSubmit}
                 disabled={isLoading}
               >
-                Add Product
+                {isLoading ? "Creating...." : "Add Product"}
               </Button>
             </VStack>
           </Box>

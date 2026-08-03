@@ -1,8 +1,8 @@
 import React from "react";
 import MainRoute from "./routes/MainRoute";
 import Layout from "./layout/Layout";
-import Navbar from "./components/Navbar";
 import { useColorModeValue } from "@chakra-ui/react";
+import Navbar from "./components/pages/Navbar";
 
 function App() {
   return (
