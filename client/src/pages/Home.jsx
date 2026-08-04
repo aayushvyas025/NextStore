@@ -1,10 +1,12 @@
 import React, { Suspense, useEffect } from "react";
-import { Container, SimpleGrid, VStack } from "@chakra-ui/react";
+import { Box, Container, SimpleGrid, VStack } from "@chakra-ui/react";
 import Header from "../components/pages/Header";
 import NoProducts from "../components/products/NoProducts";
 import useProductStore from "../store/productStore";
 import useCustomToast from "../hooks/useCustomToast";
 import ProductsCard from "../components/products/ProductsCard";
+import { LoaderPinwheel } from "lucide-react";
+import Loader from "../components/Loader/Loader";
 
 function Home() {
   const { isLoading, error, fetchProduct, products } = useProductStore();
@@ -20,18 +22,18 @@ function Home() {
     successToast(message);
   }
 
-  console.log(products); 
-
   useEffect(() => {
     handleFetchProduct();
   }, []);
 
   return (
     <Suspense>
-      <Container maxW={"container.xl"} py={12}>
+      <Container maxW={"container.xl"} py={10}>
         <VStack>
           <Header title={"Current Products"} />
           {products.length === 0 && !isLoading && <NoProducts />}
+          {isLoading && <Loader />}
+
           <SimpleGrid
             columns={{
               base: 1,

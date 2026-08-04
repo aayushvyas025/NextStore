@@ -1,8 +1,9 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import Product from "./Product";
 
 function ProductsCard({ product }) {
+    const bgColor = useColorModeValue("white", "green.700")
   return (
     <Box
       shadow={"lg"}
@@ -10,8 +11,13 @@ function ProductsCard({ product }) {
       overflow={"hidden"}
       transition={"all 0.3s"}
       _hover={{ transform: "translateY(-5px)", shadow: "xl" }}
+      bg={bgColor}
     >
-      <Product />
+      <Product
+        title={product.title}
+        image={product.image}
+        price={product.price}
+      />
     </Box>
   );
 }
