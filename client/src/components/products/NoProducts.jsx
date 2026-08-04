@@ -1,9 +1,29 @@
-import React from 'react'
+import { Text, textDecoration, useColorModeValue } from "@chakra-ui/react";
+import { Frown } from "lucide-react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 function NoProducts() {
   return (
-    <div>NoProducts</div>
-  )
+    <Text
+      fontSize={"xl"}
+      textAlign={"center"}
+      fontWeight={"bold"}
+      color={useColorModeValue("gray.500", "gray.300")}
+    >
+      No Products Found 😬 
+      <Link to={"/create"}>
+        <Text
+          as="span"
+          color={useColorModeValue("blue.500", "green.500")}
+          _hover={{ textDecoration: "underline" }}
+          px={2}
+        >
+           Create a Products
+        </Text>
+      </Link>
+    </Text>
+  );
 }
 
-export default NoProducts
+export default NoProducts;
