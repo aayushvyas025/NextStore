@@ -1,9 +1,19 @@
-import React from 'react'
+import { Box } from "@chakra-ui/react";
+import React from "react";
+import Product from "./Product";
 
-function ProductsCard() {
+function ProductsCard({ product }) {
   return (
-    <div>ProductsCard</div>
-  )
+    <Box
+      shadow={"lg"}
+      rounded={"lg"}
+      overflow={"hidden"}
+      transition={"all 0.3s"}
+      _hover={{ transform: "translateY(-5px)", shadow: "xl" }}
+    >
+      <Product />
+    </Box>
+  );
 }
 
-export default ProductsCard
+export default ProductsCard;

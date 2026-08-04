@@ -1,10 +1,12 @@
-import React from 'react'
+import { Image } from "@chakra-ui/react";
+import React from "react";
 
-function Product() {
+function Product({ title, image, price }) {
   return (
-    <div>Product</div>
-  )
+    <>
+      <Image src={image} alt={title} h={48} w="full" objectFit={"cover"} />
+    </>
+  );
 }
 
-export default Product
-
+export default Product;

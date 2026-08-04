@@ -9,13 +9,13 @@ function NoProducts() {
       fontSize={"xl"}
       textAlign={"center"}
       fontWeight={"bold"}
-      color={useColorModeValue("gray.500", "gray.300")}
+      color={useColorModeValue("gray.600", "gray.300")}
     >
       No Products Found 😬 
       <Link to={"/create"}>
         <Text
           as="span"
-          color={useColorModeValue("blue.500", "green.500")}
+          color={useColorModeValue("blue.500", "green.400")}
           _hover={{ textDecoration: "underline" }}
           px={2}
         >

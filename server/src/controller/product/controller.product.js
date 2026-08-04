@@ -61,18 +61,18 @@ export const createProduct = async (request, response, next) => {
   }
 
   try {
-    const existingProduct = await Product.findOne({ title });
+    const existingProduct = await Product.findOne({ title: title.trim() });
 
-    if (existingProduct) {
+    if (existingProduct.title === title) {
       return response
         .status(409)
         .json({ success: false, message: `Error, product already exist` });
     }
 
     const product = new Product({
-      title,
+      title:title.trim(),
       price,
-      image,
+      image:image.trim(),
     });
 
     await product.save();
@@ -110,9 +110,9 @@ export const updateProduct = async (request, response, next) => {
     const updatedProduct = await Product.findByIdAndUpdate(
       id,
       {
-        title,
+        title: title.trim(),
         price,
-        image,
+        image: image.trim(),
       },
       { new: true, runValidators: true },
     );
