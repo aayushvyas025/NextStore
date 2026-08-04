@@ -85,8 +85,9 @@ function Create() {
               />
               <Button
                 type="submit"
-                colorScheme="green"
+                colorScheme={useColorModeValue("blue", "green")}
                 w={"full"}
+                color={useColorModeValue("white", "gray.600")}
                 onClick={handleSubmit}
                 disabled={isLoading}
               >

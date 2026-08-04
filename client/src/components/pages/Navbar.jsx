@@ -1,4 +1,11 @@
-import { Container, Flex, HStack, Text, useColorMode} from "@chakra-ui/react";
+import {
+  Container,
+  Flex,
+  HStack,
+  Text,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import DarkMode from "./DarkMode";
@@ -17,7 +24,10 @@ function Navbar() {
       >
         <Text
           fontSize={{ base: "22", sm: "28" }}
-          bgGradient={"linear(to-r, teal.400, green.500)"}
+          bgGradient={useColorModeValue(
+            "linear(to-r, cyan.400, blue.500)",
+            "linear(to-r, teal.400, green.500)",
+          )}
           bgClip={"text"}
           textTransform={"uppercase"}
           textAlign={"center"}
