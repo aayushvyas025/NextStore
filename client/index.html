@@ -2,9 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NextStore - Ecommerce Application</title>
+    <script>
+      const theme = localStorage.getItem("chakra-ui-color-mode");
+      if (theme === "light") {
+        document.body.style.background = "#F7FAFC";
+      } else {
+        document.body.style.background = "#1C4532";
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

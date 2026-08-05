@@ -14,6 +14,8 @@ import NavLink from "./NavLink";
 function Navbar() {
   const { pathname } = useLocation();
   const { colorMode, toggleColorMode } = useColorMode();
+ 
+
   return (
     <Container maxW={"1140px"} px={4}>
       <Flex
