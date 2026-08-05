@@ -33,6 +33,7 @@ function Modal({ isOpen, onClose, product }) {
     }
 
     successToast(message);
+    onClose(); 
   }
 
   return (
