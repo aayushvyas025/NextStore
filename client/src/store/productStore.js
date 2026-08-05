@@ -9,8 +9,8 @@ const useProductStore = create((set) => ({
   product: null,
   createProduct: async ({ title, price, image }) => {
     const { isValid, field } = productValidation({ title, price, image });
-    console.log(title, typeof title); 
-    console.log(isValid); 
+    console.log(title, typeof title);
+    console.log(isValid);
     if (!isValid) {
       const message = `Error, ${field} is required`;
       set({ error: message });
@@ -30,7 +30,7 @@ const useProductStore = create((set) => ({
       }));
       return {
         success: true,
-        message: data.message
+        message: data.message,
       };
     } catch (error) {
       console.error(`Error, while creating product ${error.message}`);
@@ -78,7 +78,6 @@ const useProductStore = create((set) => ({
     }
   },
   updateProduct: async (productId, { title, price, image }) => {
-
     const { isValid, field } = productValidation({ title, price, image });
     if (!isValid) {
       const message = `Error, ${field} is required`;
@@ -113,9 +112,9 @@ const useProductStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const { data } = await API.delete(`/product/delete/${productId}`);
-      set((state) =>
-        state.products.filter((product) => product._id !== productId),
-      );
+      set((state) => ({
+        products: state.products.filter((product) => product._id !== productId),
+      }));
       return { success: true, message: data.message };
     } catch (error) {
       console.error(`Error, while deleting product ${error.message}`);
@@ -129,4 +128,4 @@ const useProductStore = create((set) => ({
   },
 }));
 
-export default useProductStore; 
+export default useProductStore;

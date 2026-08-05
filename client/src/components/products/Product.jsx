@@ -9,9 +9,24 @@ import {
 } from "@chakra-ui/react";
 import { Edit, Trash2 } from "lucide-react";
 import React from "react";
+import useProductStore from "../../store/productStore";
+import useCustomToast from "../../hooks/useCustomToast";
 
-function Product({ title, image, price }) {
+function Product({ title, image, price, productId }) {
   const textColor = useColorModeValue("gray.600", "gray.300");
+  const { successToast, errorToast } = useCustomToast();
+  const { loading, error, deleteProduct } = useProductStore();
+
+  async function handleProductDelete(id) {
+    const { success, message } = await deleteProduct(id);
+
+    if (!success) {
+      errorToast(message);
+    }; 
+    
+    successToast(message);
+  }
+
   return (
     <>
       <Image src={image} alt={title} h={48} w="full" objectFit={"cover"} />
@@ -20,7 +35,7 @@ function Product({ title, image, price }) {
           {title}
         </Heading>
         <Text fontWeight={"bold"} fontSize={"lg"} color={textColor} mb={2}>
-           ₹{Number(price).toLocaleString()}
+          ₹{Number(price).toLocaleString()}
         </Text>
         <HStack spacing={4} mt={4}>
           <IconButton
@@ -30,7 +45,13 @@ function Product({ title, image, price }) {
             colorScheme={useColorModeValue("blue", "green")}
             size={20}
           />
-          <IconButton icon={<Trash2 />} colorScheme="red" size={20} p={1} />
+          <IconButton
+            icon={<Trash2 />}
+            colorScheme="red"
+            size={20}
+            p={1}
+            onClick={() => handleProductDelete(productId)}
+          />
         </HStack>
       </Box>
     </>

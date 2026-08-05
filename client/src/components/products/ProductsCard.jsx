@@ -14,6 +14,7 @@ function ProductsCard({ product }) {
       bg={bgColor}
     >
       <Product
+       productId ={product._id}
         title={product.title}
         image={product.image}
         price={product.price}
