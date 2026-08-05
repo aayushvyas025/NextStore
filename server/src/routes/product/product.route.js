@@ -5,7 +5,7 @@ import {
   fetchProduct,
   fetchProductById,
   updateProduct,
-} from "#controller/product/controller.product";
+} from "#controller/product/product.controller";
 import express from "express";
 
 const { products } = apiRoutes;

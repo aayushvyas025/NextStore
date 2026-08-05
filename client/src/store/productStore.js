@@ -9,6 +9,8 @@ const useProductStore = create((set) => ({
   product: null,
   createProduct: async ({ title, price, image }) => {
     const { isValid, field } = productValidation({ title, price, image });
+    console.log(title, typeof title); 
+    console.log(isValid); 
     if (!isValid) {
       const message = `Error, ${field} is required`;
       set({ error: message });
@@ -76,6 +78,7 @@ const useProductStore = create((set) => ({
     }
   },
   updateProduct: async (productId, { title, price, image }) => {
+
     const { isValid, field } = productValidation({ title, price, image });
     if (!isValid) {
       const message = `Error, ${field} is required`;
