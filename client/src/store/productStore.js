@@ -9,8 +9,6 @@ const useProductStore = create((set) => ({
   product: null,
   createProduct: async ({ title, price, image }) => {
     const { isValid, field } = productValidation({ title, price, image });
-    console.log(title, typeof title);
-    console.log(isValid);
     if (!isValid) {
       const message = `Error, ${field} is required`;
       set({ error: message });
@@ -61,22 +59,6 @@ const useProductStore = create((set) => ({
       set({ isLoading: false });
     }
   },
-  fetchProductById: async (productId) => {
-    set({ isLoading: true, error: null });
-    try {
-      const { data } = await API.get(`/product/fetch/${productId}`);
-      set({ product: data.product });
-      return { success: true, message: data.message, product: data.product };
-    } catch (error) {
-      console.error(`Error, while fetching product by id: ${error.message}`);
-      const errorMessage =
-        error?.response?.data?.message || `Error, fetching product by id`;
-      set({ error: errorMessage });
-      return { success: false, message: errorMessage };
-    } finally {
-      set({ isLoading: false });
-    }
-  },
   updateProduct: async (productId, { title, price, image }) => {
     const { isValid, field } = productValidation({ title, price, image });
     if (!isValid) {
@@ -92,7 +74,9 @@ const useProductStore = create((set) => ({
         image,
       });
 
-      set({ product: data.updatedProduct });
+      set((state) => ({
+        products:state.products.map((product) => product._id === productId ? data.updatedProduct : product)
+      }));
       return {
         success: true,
         message: data.message,
