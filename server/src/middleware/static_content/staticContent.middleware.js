@@ -2,7 +2,7 @@ import express from "express";
 import envVariables from "#constants/env.constant";
 import path from "path";
 
-const { nodeEnvironment, clientBaseURL } = envVariables;
+const { nodeEnvironment } = envVariables;
 const __dirname = path.resolve();
 
 function setupStaticContentMiddleware(app) {
