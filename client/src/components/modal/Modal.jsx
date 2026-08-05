@@ -13,11 +13,27 @@ import {
   Button,
 } from "@chakra-ui/react";
 import useProductStore from "../../store/productStore";
+import useCustomToast from "../../hooks/useCustomToast";
 
 function Modal({ isOpen, onClose, product }) {
   const [updateProduct, setUpdateProduct] = useState(product);
-
+  const { successToast, errorToast } = useCustomToast();
   const { isLoading, error, updatedProduct } = useProductStore();
+
+  async function handleUpdateProduct(pid, { title, price, image }) {
+    const { success, message } = await updatedProduct(pid, {
+      title,
+      price,
+      image,
+    });
+
+    if (!success) {
+      errorToast(message);
+      return;
+    }
+
+    successToast(message);
+  }
 
   return (
     <Md isOpen={isOpen} onClose={onClose}>
@@ -47,7 +63,7 @@ function Modal({ isOpen, onClose, product }) {
               onChange={(event) => {
                 setUpdateProduct({
                   ...updateProduct,
-                  price: event.target.value,
+                  price: Number(event.target.value),
                 });
               }}
             />
@@ -73,7 +89,14 @@ function Modal({ isOpen, onClose, product }) {
               backgroundColor: useColorModeValue("blue.800", "green.800"),
             }}
             color={"white"}
-            onClick={() => {}}
+            type="submit"
+            onClick={() =>
+              handleUpdateProduct(product._id, {
+                title: updateProduct.title,
+                price: Number(updateProduct.price),
+                image: updateProduct.image,
+              })
+            }
           >
             Update
           </Button>

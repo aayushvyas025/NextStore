@@ -59,7 +59,7 @@ const useProductStore = create((set) => ({
       set({ isLoading: false });
     }
   },
-  updateProduct: async (productId, { title, price, image }) => {
+  updatedProduct: async (productId, { title, price, image }) => {
     const { isValid, field } = productValidation({ title, price, image });
     if (!isValid) {
       const message = `Error, ${field} is required`;
