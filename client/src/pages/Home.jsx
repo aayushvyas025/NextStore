@@ -1,15 +1,14 @@
-import React, { Suspense, useEffect } from "react";
-import { Box, Container, SimpleGrid, VStack } from "@chakra-ui/react";
+import  { Suspense, useEffect } from "react";
+import { Container, SimpleGrid, VStack } from "@chakra-ui/react";
 import Header from "../components/pages/Header";
 import NoProducts from "../components/products/NoProducts";
 import useProductStore from "../store/productStore";
 import useCustomToast from "../hooks/useCustomToast";
 import ProductsCard from "../components/products/ProductsCard";
-import { LoaderPinwheel } from "lucide-react";
 import Loader from "../components/Loader/Loader";
 
 function Home() {
-  const { isLoading, error, fetchProduct, products } = useProductStore();
+  const { isLoading,fetchProduct, products } = useProductStore();
   const { successToast, errorToast } = useCustomToast();
 
   async function handleFetchProduct() {

@@ -141,7 +141,7 @@ export const deleteProduct = async (request, response, next) => {
   if (!isValid) {
     return response.status(400).json({
       success: false,
-      message: `Error, ${invalId}`,
+      message: `Error, ${invalidId}`,
     });
   }
 
