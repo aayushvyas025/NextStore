@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Modal as Md,
   ModalOverlay,
@@ -18,7 +18,7 @@ import useCustomToast from "../../hooks/useCustomToast";
 function Modal({ isOpen, onClose, product }) {
   const [updateProduct, setUpdateProduct] = useState(product);
   const { successToast, errorToast } = useCustomToast();
-  const { isLoading, error, updatedProduct } = useProductStore();
+  const { updatedProduct } = useProductStore();
 
   async function handleUpdateProduct(pid, { title, price, image }) {
     const { success, message } = await updatedProduct(pid, {

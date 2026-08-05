@@ -9,7 +9,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { Edit, Trash2 } from "lucide-react";
-import React from "react";
 import useProductStore from "../../store/productStore";
 import useCustomToast from "../../hooks/useCustomToast";
 import Modal from "../modal/Modal";
@@ -17,8 +16,8 @@ import Modal from "../modal/Modal";
 function Product({  product }) {
   const textColor = useColorModeValue("gray.600", "gray.300");
   const { successToast, errorToast } = useCustomToast();
-  const { loading, error, deleteProduct } = useProductStore();
-  const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
+  const { deleteProduct } = useProductStore();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   async function handleProductDelete(id) {
     const { success, message } = await deleteProduct(id);

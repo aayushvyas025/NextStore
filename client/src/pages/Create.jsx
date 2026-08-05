@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import  { Suspense, useState } from "react";
 import {
   Box,
   Button,
@@ -6,7 +6,6 @@ import {
   Heading,
   Input,
   useColorModeValue,
-  useToast,
   VStack,
 } from "@chakra-ui/react";
 import useProductStore from "../store/productStore";
@@ -20,7 +19,7 @@ function Create() {
     image: "",
   });
   const { successToast, errorToast } = useCustomToast();
-  const { isLoading, error, createProduct } = useProductStore();
+  const { isLoading, createProduct } = useProductStore();
 
   async function handleSubmit() {
     const { success, message } = await createProduct({

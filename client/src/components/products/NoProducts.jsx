@@ -1,6 +1,4 @@
-import { Text, textDecoration, useColorModeValue } from "@chakra-ui/react";
-import { Frown } from "lucide-react";
-import React from "react";
+import { Text,  useColorModeValue } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 function NoProducts() {
