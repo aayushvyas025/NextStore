@@ -1,4 +1,4 @@
-import  { Suspense, useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { Container, SimpleGrid, VStack } from "@chakra-ui/react";
 import Header from "../components/pages/Header";
 import NoProducts from "../components/products/NoProducts";
@@ -6,9 +6,10 @@ import useProductStore from "../store/productStore";
 import useCustomToast from "../hooks/useCustomToast";
 import ProductsCard from "../components/products/ProductsCard";
 import Loader from "../components/Loader/Loader";
+import HomePageSkeleton from "../components/skeleton/HomePageSkeleton";
 
 function Home() {
-  const { isLoading,fetchProduct, products } = useProductStore();
+  const { isLoading, fetchProduct, products } = useProductStore();
   const { successToast, errorToast } = useCustomToast();
 
   async function handleFetchProduct() {
@@ -26,7 +27,7 @@ function Home() {
   }, []);
 
   return (
-    <Suspense>
+    <Suspense fallback={<HomePageSkeleton />}>
       <Container maxW={"container.xl"} py={10}>
         <VStack>
           <Header title={"Current Products"} />
